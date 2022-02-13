@@ -1,6 +1,8 @@
 # Simple Genetic Algorithm
 
-A simple genetic algorithm where a population evolves. [Read more about genetic algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm).
+A simple genetic algorithm where a population evolves. Access the project page clicking [here](https://jv-amorim.github.io/simple-genetic-algorithm/).
+
+Read more about [genetic algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm).
 
 The main file in this repository is [genetic-algorithm.ts](./genetic-algorithm.ts). All the logic about the genetic algorithm must be read from it.
 
