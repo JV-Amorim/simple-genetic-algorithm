@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Genetic Algorithm </title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background-color: aquamarine;
+    }
+    h1 {
+      margin-bottom: 10px;
+      margin-left: 30px;
+      color: #4C3D3F;
+    }
+    a {
+      color: blue;
+      margin-left: 30px;
+      font-size: 12px;
+    }
+    #chart {
+      padding: 30px 30px 0px 30px;
+      height: 350px;
+      max-width: 500px;
+    }
+    #generate-button {
+      padding: 10px 20px;
+      margin-left: 30px;
+      color: #FFFFFF;
+      background-color: blue;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0px 1px 5px #0000009c;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1> Genetic Algorithm </h1>
+
+  <a href="https://github.com/JV-Amorim/simple-genetic-algorithm"> See the GitHub repository for more details. </a>
+
+  <div id="chart"></div>
+  <button id="generate-button"> Execute Again! </button>
+
+  <script type="module">
+    import { generateAlgorithmResult } from './genetic-algorithm.js';
+    import ApexCharts from './apexcharts.esm.js';
+
+    function generateNewChart() {
+      const algorithmResult = generateAlgorithmResult();
+
+      const options = {
+        series: [{
+          name: 'Score',
+          data: algorithmResult.map(generation => generation.averageScore.toFixed(2))
+        }],
+        chart: { type: 'line' },
+        title: { text: 'Population Evolution' },
+        xaxis: {
+          categories: algorithmResult.map((_generation, index) => (
+            index === 0 ? 'Initial Popul.' : `${index}º Generation`
+          )),
+        }
+      };
+
+      const chartElement = document.getElementById('chart');
+      chartElement.innerHTML = '';
+
+      const chart = new ApexCharts(chartElement, options);
+      chart.render();
+    }
+
+    document.getElementById('generate-button').onclick = generateNewChart;
+
+    generateNewChart();
+  </script>
+</body>
+
+</html>
